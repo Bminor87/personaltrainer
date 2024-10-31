@@ -1,6 +1,6 @@
 import { DialogContent, TextField } from "@mui/material";
 
-function CustomerDialogContent({ customer, handleChange }) {
+export default function CustomerDialogContent({ customer, handleChange }) {
   return (
     <DialogContent>
       <TextField
@@ -91,5 +91,3 @@ function CustomerDialogContent({ customer, handleChange }) {
     </DialogContent>
   );
 }
-
-export default CustomerDialogContent;
