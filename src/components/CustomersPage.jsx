@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useRef, useState, useCallback, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { AgGridReact } from "ag-grid-react";
 import { Button, Snackbar, Typography } from "@mui/material";
@@ -12,10 +12,16 @@ import DeleteCustomerButton from "./partials/DeleteCustomerButton";
 import CreateCustomer from "./partials/CreateCustomer";
 
 export default function CustomersPage() {
+  const gridRef = useRef();
+
   const { data: customers } = useQuery({
     queryKey: ["customers"],
     queryFn: getCustomers,
   });
+
+  const popupParent = useMemo(() => {
+    return document.body;
+  }, []);
 
   const [columnDefs, setColumnDefs] = useState([
     { field: "firstname", headerName: "First Name", sort: "asc" },
@@ -31,7 +37,7 @@ export default function CustomersPage() {
       sortable: false,
       filter: false,
       cellRenderer: (params) => (
-        <UpdateCustomer currentCustomer={params.data} />
+        console.log(params), (<UpdateCustomer currentCustomer={params.data} />)
       ),
     },
     {
@@ -54,16 +60,39 @@ export default function CustomersPage() {
     type: "fitGridWidth",
   };
 
+  const exportCsv = useCallback(() => {
+    gridRef.current.api.exportDataAsCsv({
+      fileName: "customers.csv",
+      columnKeys: [
+        "firstname",
+        "lastname",
+        "streetaddress",
+        "postcode",
+        "city",
+        "email",
+        "phone",
+      ],
+      suppressQuotes: true,
+    });
+  }, []);
+
   return (
     <div className="ag-list mt-4">
       <Typography variant="h3">Customers</Typography>
       <CreateCustomer />
-      <div className="ag-theme-material" style={{ height: 800, width: "100%" }}>
+      <Button onClick={exportCsv}>Export Customers to CSV</Button>
+      <div
+        id="gridContainer"
+        className="ag-theme-material"
+        style={{ height: 800, width: "100%" }}
+      >
         <AgGridReact
+          ref={gridRef}
           rowData={customers}
           columnDefs={columnDefs}
           defaultColDef={defaultColDef}
           autoSizeStrategy={autoSizeStrategy}
+          popupParent={popupParent}
         />
       </div>
     </div>
