@@ -23,7 +23,7 @@ export default function CreateTraining() {
   const resetTraining = () => {
     setTraining({
       date: "",
-      duration: "",
+      duration: 30,
       activity: "",
       customer: "",
     });

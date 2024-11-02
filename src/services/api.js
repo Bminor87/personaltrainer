@@ -44,4 +44,4 @@ const reset = async () => {
   });
 };
 
-export { get, post, put, remove, reset };
+export { get, post, put, remove, reset, BASE_URL };

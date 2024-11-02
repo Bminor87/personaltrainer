@@ -1,4 +1,4 @@
-import { get, post, put, remove } from "./api";
+import { get, post, put, remove, BASE_URL } from "./api";
 
 const ENDPOINT = "trainings";
 
@@ -18,7 +18,7 @@ const createTraining = async (training) => {
 };
 
 const deleteTraining = async (id) => {
-  return remove(ENDPOINT + "/" + id);
+  return remove(BASE_URL + ENDPOINT + "/" + id);
 };
 
 export {

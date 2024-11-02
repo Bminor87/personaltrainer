@@ -16,7 +16,8 @@ export default function DeleteTrainingButton({ currentTraining }) {
   });
 
   const handleConfirm = () => {
-    deleteMutation.mutate(training._links.self.href);
+    console.log("Deleting training: ", training);
+    deleteMutation.mutate(training.id);
     handleClose();
   };
 

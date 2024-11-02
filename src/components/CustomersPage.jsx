@@ -46,14 +46,12 @@ export default function CustomersPage() {
   ]);
 
   const defaultColDef = {
-    flex: 1,
-    minWidth: 100,
     filter: true,
     sortable: true,
   };
 
   const autoSizeStrategy = {
-    type: "fitColumns",
+    type: "fitGridWidth",
   };
 
   return (

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { AgGridReact } from "ag-grid-react";
 import { Typography } from "@mui/material";
+import dayjs from "dayjs";
 
 import { getTrainingsWithCustomer } from "../services/trainings-service";
 import CreateTraining from "./partials/CreateTraining";
@@ -18,15 +19,15 @@ export default function TrainingsPage() {
       field: "date",
       headerName: "Date",
       sort: "asc",
-      cellRenderer: (params) =>
-        Intl.DateTimeFormat("fi-FI").format(new Date(params.value)),
+      valueFormatter: (params) =>
+        dayjs(params.value).format("DD.MM.YYYY hh:mm"),
     },
     { field: "duration", headerName: "Duration" },
     { field: "activity", headerName: "Activity" },
     {
       field: "customer",
       headerName: "Customer",
-      cellRenderer: (params) =>
+      valueFormatter: (params) =>
         params.value.firstname + " " + params.value.lastname,
     },
     {
@@ -41,14 +42,12 @@ export default function TrainingsPage() {
   ]);
 
   const defaultColDef = {
-    flex: 1,
-    minWidth: 100,
     filter: true,
     sortable: true,
   };
 
   const autoSizeStrategy = {
-    type: "fitColumns",
+    type: "fitGridWidth",
   };
 
   return (

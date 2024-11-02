@@ -10,6 +10,8 @@ import {
   Box,
 } from "@mui/material";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 
 import PersonalTrainerApp from "./components/PersonalTrainerApp";
 import CustomersPage from "./components/CustomersPage";
@@ -22,37 +24,39 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Router>
-        <CssBaseline />
-        <Container maxWidth="xl">
-          <AppBar position="sticky" color="success">
-            <Toolbar>
-              <Grid2 direction="row" container={true}>
-                <Typography variant="h5" component={Link} to="/">
-                  Personal Trainer
-                </Typography>
-                <Box display="flex" marginLeft="40px">
-                  <Button color="inherit" component={Link} to="/customers">
-                    Customers
-                  </Button>
-                  <Button color="inherit" component={Link} to="/trainings">
-                    Trainings
-                  </Button>
-                </Box>
-                <Box display="flex" marginLeft="40px">
-                  <ResetButton />
-                </Box>
-              </Grid2>
-            </Toolbar>
-          </AppBar>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <Router>
+          <CssBaseline />
+          <Container maxWidth="xl">
+            <AppBar position="sticky" color="success">
+              <Toolbar>
+                <Grid2 direction="row" container={true}>
+                  <Typography variant="h5" component={Link} to="/">
+                    Personal Trainer
+                  </Typography>
+                  <Box display="flex" marginLeft="40px">
+                    <Button color="inherit" component={Link} to="/customers">
+                      Customers
+                    </Button>
+                    <Button color="inherit" component={Link} to="/trainings">
+                      Trainings
+                    </Button>
+                  </Box>
+                  <Box display="flex" marginLeft="40px">
+                    <ResetButton />
+                  </Box>
+                </Grid2>
+              </Toolbar>
+            </AppBar>
 
-          <Routes>
-            <Route path="/" element={<PersonalTrainerApp />} />
-            <Route path="/customers" element={<CustomersPage />} />
-            <Route path="/trainings" element={<TrainingsPage />} />
-          </Routes>
-        </Container>
-      </Router>
+            <Routes>
+              <Route path="/" element={<PersonalTrainerApp />} />
+              <Route path="/customers" element={<CustomersPage />} />
+              <Route path="/trainings" element={<TrainingsPage />} />
+            </Routes>
+          </Container>
+        </Router>
+      </LocalizationProvider>
     </QueryClientProvider>
   );
 }
