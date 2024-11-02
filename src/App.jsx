@@ -16,6 +16,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import PersonalTrainerApp from "./components/PersonalTrainerApp";
 import CustomersPage from "./components/CustomersPage";
 import TrainingsPage from "./components/TrainingsPage";
+import CalendarPage from "./components/CalendarPage";
 import ResetButton from "./components/partials/ResetButton";
 import "./App.css";
 
@@ -41,6 +42,9 @@ function App() {
                     <Button color="inherit" component={Link} to="/trainings">
                       Trainings
                     </Button>
+                    <Button color="inherit" component={Link} to="/calendar">
+                      Calendar
+                    </Button>
                   </Box>
                   <Box display="flex" marginLeft="40px">
                     <ResetButton />
@@ -53,6 +57,7 @@ function App() {
               <Route path="/" element={<PersonalTrainerApp />} />
               <Route path="/customers" element={<CustomersPage />} />
               <Route path="/trainings" element={<TrainingsPage />} />
+              <Route path="/calendar" element={<CalendarPage />} />
             </Routes>
           </Container>
         </Router>
