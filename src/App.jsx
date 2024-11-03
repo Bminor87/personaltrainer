@@ -20,6 +20,8 @@ import CalendarPage from "./components/CalendarPage";
 import ResetButton from "./components/partials/ResetButton";
 import "./App.css";
 
+import FlyoutMenu from "./components/tailwind/FlyoutMenu";
+
 function App() {
   const queryClient = new QueryClient();
 
@@ -31,25 +33,10 @@ function App() {
           <Container maxWidth="xl">
             <AppBar position="sticky" color="success">
               <Toolbar>
-                <Grid2 direction="row" container={true}>
-                  <Typography variant="h5" component={Link} to="/">
-                    Personal Trainer
-                  </Typography>
-                  <Box display="flex" marginLeft="40px">
-                    <Button color="inherit" component={Link} to="/customers">
-                      Customers
-                    </Button>
-                    <Button color="inherit" component={Link} to="/trainings">
-                      Trainings
-                    </Button>
-                    <Button color="inherit" component={Link} to="/calendar">
-                      Calendar
-                    </Button>
-                  </Box>
-                  <Box display="flex" marginLeft="40px">
-                    <ResetButton />
-                  </Box>
-                </Grid2>
+                <Typography variant="h5" component={Link} to="/">
+                  Personal Trainer
+                </Typography>
+                <FlyoutMenu />
               </Toolbar>
             </AppBar>
 
