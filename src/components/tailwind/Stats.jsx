@@ -2,7 +2,6 @@ import { getCustomers } from "../../services/customers-service";
 import { getTrainingsWithCustomer } from "../../services/trainings-service";
 import { useEffect, useState } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid } from "recharts";
 import _ from "lodash";
 // React Chart Component
 import { AgCharts } from "ag-charts-react";
