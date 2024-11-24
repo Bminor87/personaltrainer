@@ -88,7 +88,7 @@ export default function FlyoutMenu() {
           </div>
           <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
             <a
-              href="#demo"
+              href="https://hellmanstudios.fi/personal_trainer_demo.mp4"
               className="flex items-center justify-center gap-x-2.5 p-3 font-semibold text-gray-900 hover:bg-gray-100"
             >
               <PlayCircleIcon
